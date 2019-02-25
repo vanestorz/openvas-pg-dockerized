@@ -14,7 +14,7 @@ RUN apt-get install build-essential rsync cmake wget curl nmap apt-utils \
                     gettext gnutls-bin libgcrypt20 \
                     python-software-properties \
                     xmltoman doxygen xsltproc libmicrohttpd-dev \
-                    wapiti nsis rpm alien dnsutils \
+                    wapiti nsis rpm alien dnsutils libical-dev \
                     net-tools openssh-client sendmail vim nano \
                     texlive-latex-extra texlive-latex-base texlive-latex-recommended \
                     htmldoc python2.7 python-setuptools python-pip sqlfairy python-polib \
@@ -54,12 +54,6 @@ RUN echo "Install OpenVAS Scanner" && \
     cmake .. && \
     make && make doc && make install && make rebuild_cache
 
-RUN echo "Install GVMD" && \
-    cd /openvas-temp/gvmd-master && \
-    mkdir build && cd build && \
-    cmake -DBACKEND=POSTGRESQL .. && \
-    make && make doc && make install && make rebuild_cache
-
 RUN echo "Install GVM-Tools" && \
     cd /openvas-temp/gvm-tools-master && \
     pip install .
@@ -72,6 +66,12 @@ RUN echo "Install Greenbone Web Interface" && \
     cd /openvas-temp/gsa-master && \
     mkdir build && cd build && \
     cmake .. && \
+    make && make doc && make install && make rebuild_cache
+
+RUN echo "Install GVMD" && \
+    cd /openvas-temp/gvmd-master && \
+    mkdir build && cd build && \
+    cmake -DBACKEND=POSTGRESQL .. && \
     make && make doc && make install && make rebuild_cache
 
 RUN apt-get autoremove -yq && \
