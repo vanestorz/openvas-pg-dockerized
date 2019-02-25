@@ -68,7 +68,7 @@ RUN echo "Install OSPD" && \
 
 RUN echo "Install Greenbone Web Interface" && \
     cd /openvas-temp/gsa-master && \
-    curl -sL https://deb.nodesource.com/setup_11.x | -E bash - && \
+    curl -sL https://deb.nodesource.com/setup_11.x | bash - && \
     apt-get install -y nodejs && \
     mkdir build && cd build && \
     cmake .. && \
