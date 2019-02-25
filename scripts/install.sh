@@ -11,7 +11,7 @@ service postgresql start
 
 su - postgres -c "createuser -DRS root"
 su - postgres -c "createdb -O root tasks"
-su - postgres -c "psql tasks -c 'create role dba with superuser noinherit; grant dba to root; create extension \"uuid-oosp\";'"
+su - postgres -c "psql tasks -c 'create role dba with superuser noinherit; grant dba to root; create extension \"uuid-ossp\";'"
 sleep 5
 
 redis-server /etc/redis/redis.conf
