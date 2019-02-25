@@ -60,6 +60,7 @@ RUN echo "Install GVM-Tools" && \
 
 RUN echo "Install OSPD" && \
     cd /openvas-temp/ospd-master && \
+    pip install --upgrade pip && \
     pip install .
 
 RUN echo "Install Greenbone Web Interface" && \
