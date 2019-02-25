@@ -55,8 +55,8 @@ RUN echo "Install OpenVAS Scanner" && \
     make && make doc && make install && make rebuild_cache
 
 RUN echo "Upgrading pip modules" && \
-    pip install --upgrade pip && 
-    
+    pip install --upgrade pip
+
 RUN echo "Install GVM-Tools" && \
     cd /openvas-temp/gvm-tools-master && \
     pip install .
