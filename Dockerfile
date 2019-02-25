@@ -5,11 +5,11 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && \
     apt-get install software-properties-common --no-install-recommends -yq
 
-RUN apt-get install build-essential rsync cmake wget curl nmap \
+RUN apt-get install build-essential rsync cmake wget curl nmap apt-utils \
                     python-software-properties software-properties-common \
                     pkg-config python-dev \
                     libssh-dev libgnutls28-dev libglib2.0-dev libpcap-dev \
-                    libpgme11-dev uuid-dev bison libksba-dev libsnmp-dev \
+                    libgpgme11-dev uuid-dev bison libksba-dev libsnmp-dev \
                     libgcrypt20-dev libldap2-dev libxml2-dev libxslt1-dev \
                     gettext gnutls-bin libgcrypt20 \
                     python-software-properties \
@@ -17,9 +17,9 @@ RUN apt-get install build-essential rsync cmake wget curl nmap \
                     wapiti nsis rpm alien dnsutils \
                     net-tools openssh-client sendmail vim nano \
                     texlive-latex-extra texlive-latex-base texlive-latex-recommended \
-                    htmldock python2.7 python-setuptools python-pip sqlfairy python-polib \
+                    htmldoc python2.7 python-setuptools python-pip sqlfairy python-polib \
                     perl-base heimdal-dev heimdal-multidev autoconf sqlite3 libsqlite3-dev redis-server \
-                    libhiredis-dev libopt-dev libxslt-dev gnupg \
+                    libhiredis-dev libpopt-dev libxslt-dev gnupg \
                     postgresql-9.5 libpq-dev postgresql-server-dev-all postgresql-client-9.5 postgresql-contrib-9.5 unzip \
                     -yq --force-yes
 
