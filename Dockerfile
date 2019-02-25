@@ -19,7 +19,7 @@ RUN apt-get install build-essential rsync cmake wget curl nmap apt-utils \
                     texlive-latex-extra texlive-latex-base texlive-latex-recommended \
                     htmldoc python2.7 python-setuptools python-pip sqlfairy python-polib \
                     perl-base heimdal-dev heimdal-multidev autoconf sqlite3 libsqlite3-dev redis-server \
-                    libhiredis-dev libpopt-dev libxslt-dev gnupg \
+                    libhiredis-dev libpopt-dev libxslt-dev gnupg wget \
                     postgresql-9.5 libpq-dev postgresql-server-dev-all postgresql-client-9.5 postgresql-contrib-9.5 unzip \
                     -yq --allow-downgrades --allow-remove-essential --allow-change-held-packages
 
