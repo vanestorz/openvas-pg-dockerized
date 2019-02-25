@@ -33,12 +33,12 @@ ADD configuration/redis.config /etc/redis/redis.config
 
 RUN echo "[OpenVAS] Install OpenVAS..." && \
     cd /openvas-temp && \
-    wget -nv https://wald.intevation.org/frs/download.php/2420/openvas-libraries-9.0.1.tar.gz && \
-    wget -nv https://wald.intevation.org/frs/download.php/2423/openvas-scanner-5.1.1.tar.gz && \
-    wget -nv https://wald.intevation.org/frs/download.php/2448/openvas-manager-7.0.2.tar.gz && \
-    wget -nv https://wald.intevation.org/frs/download.php/2429/greenbone-security-assistant-7.0.2.tar.gz && \
-    wget -nv https://wald.intevation.org/frs/download.php/2397/openvas-cli-1.4.5.tar.gz && \
-    wget -nv https://wald.intevation.org/frs/download.php/2401/ospd-1.2.0.tar.gz && \
+    wget -nv --no-check-certificate https://wald.intevation.org/frs/download.php/2420/openvas-libraries-9.0.1.tar.gz && \
+    wget -nv --no-check-certificate https://wald.intevation.org/frs/download.php/2423/openvas-scanner-5.1.1.tar.gz && \
+    wget -nv --no-check-certificate https://wald.intevation.org/frs/download.php/2448/openvas-manager-7.0.2.tar.gz && \
+    wget -nv --no-check-certificate https://wald.intevation.org/frs/download.php/2429/greenbone-security-assistant-7.0.2.tar.gz && \
+    wget -nv --no-check-certificate https://wald.intevation.org/frs/download.php/2397/openvas-cli-1.4.5.tar.gz && \
+    wget -nv --no-check-certificate https://wald.intevation.org/frs/download.php/2401/ospd-1.2.0.tar.gz && \
     echo "Untar all OpenVAS files" && \
     cat *.tar.gz | tar -xzvf - -i
 
