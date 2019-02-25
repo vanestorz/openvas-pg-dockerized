@@ -21,7 +21,7 @@ RUN apt-get install build-essential rsync cmake wget curl nmap apt-utils \
                     perl-base heimdal-dev heimdal-multidev autoconf sqlite3 libsqlite3-dev redis-server \
                     libhiredis-dev libpopt-dev libxslt-dev gnupg \
                     postgresql-9.5 libpq-dev postgresql-server-dev-all postgresql-client-9.5 postgresql-contrib-9.5 unzip \
-                    -yq --allow
+                    -yq --allow-downgrades --allow-remove-essential --allow-change-held-packages
 
 RUN echo "Create auxiliary files and directories" && \
     mkdir -p /var/run/redis && \
