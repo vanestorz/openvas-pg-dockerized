@@ -33,55 +33,43 @@ ADD configuration/redis.config /etc/redis/redis.config
 
 RUN echo "[OpenVAS] Install OpenVAS..." && \
     cd /openvas-temp && \
-    wget -nv https://github.com/greenbone/gvm-libs/archive/gvm-libs-1.0.zip && \
-    wget -nv https://github.com/greenbone/openvas-scanner/archive/openvas-scanner-6.0.zip && \
-    wget -nv https://github.com/greenbone/gvmd/archive/gvmd-8.0.zip && \
-    wget -nv https://github.com/greenbone/gsa/archive/gsa-8.0.zip && \
-    wget -nv https://github.com/greenbone/gvm-tools/archive/master.zip && \
-    wget -nv https://github.com/greenbone/ospd/archive/ospd-1.3.zip && \
-    echo "Unzip all OpenVAS files" && \
-    cat *.zip | unzip '*.zip'
+    wget -nv https://wald.intevation.org/frs/download.php/2420/openvas-libraries-9.0.1.tar.gz && \
+    wget -nv https://wald.intevation.org/frs/download.php/2423/openvas-scanner-5.1.1.tar.gz && \
+    wget -nv https://wald.intevation.org/frs/download.php/2448/openvas-manager-7.0.2.tar.gz && \
+    wget -nv https://wald.intevation.org/frs/download.php/2429/greenbone-security-assistant-7.0.2.tar.gz && \
+    wget -nv https://wald.intevation.org/frs/download.php/2397/openvas-cli-1.4.5.tar.gz && \
+    wget -nv https://wald.intevation.org/frs/download.php/2401/ospd-1.2.0.tar.gz && \
+    echo "Untar all OpenVAS files" && \
+    cat *.tar.gz | tar -xzvf - -i
 
-RUN echo "Install GVM Libraries" && \
-    cd /openvas-temp/gvm-libs-master && \
+RUN echo "Install OpenVAS Libraries" && \
+    cd /openvas-temp/openvas-libraries-* && \
     mkdir build && cd build && \
     cmake .. && \
     make && make doc && make install && make rebuild_cache
 
 RUN echo "Install OpenVAS Scanner" && \
-    cd /openvas-temp/openvas-scanner-master && \
+    cd /openvas-temp/openvas-scanner-* && \
     mkdir build && cd build && \
     cmake .. && \
     make && make doc && make install && make rebuild_cache
 
-RUN echo "Upgrading pip modules" && \
-    pip install --upgrade pip
-
-#RUN echo "Install GVM-Tools" && \
-#    cd /openvas-temp/gvm-tools-master && \
-#    pip install gvm-tools
-
-RUN echo "Install OSPD" && \
-    cd /openvas-temp/ospd-master && \
-    pip install .
-
-
-RUN echo "Install Greenbone Web Interface" && \
-    cd /openvas-temp/gsa-master && \
-    curl --silent --show-error https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
-    echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
-    curl --silent --show-error https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add - && \
-    echo "deb https://deb.nodesource.com/node_8.x stretch main" | tee /etc/apt/sources.list.d/nodesource.list && \
-    apt-get update && \
-    apt-get install nodejs yarn && \
-    mkdir build && cd build && \
-    cmake .. && \
-    make install
-
-RUN echo "Install GVMD" && \
-    cd /openvas-temp/gvmd-master && \
+RUN echo "Install OpenVAS Manager" && \
+    cd /openvas-temp/openvas-manager-* && \
     mkdir build && cd build && \
     cmake -DBACKEND=POSTGRESQL .. && \
+    make && make doc && make install && make rebuild_cache
+
+RUN echo "Install OpenVAS CLI" && \
+    cd /openvas-temp/openvas-cli-* && \
+    mkdir build && cd build && \
+    cmake .. && \
+    make && make doc && make install && make rebuild_cache
+
+RUN echo "Install Greenbone Web Interface" && \
+    cd /openvas-temp/greenbone-security-assistant-* && \
+    mkdir build && cd build && \
+    cmake .. && \
     make && make doc && make install && make rebuild_cache
 
 RUN apt-get autoremove -yq && \
