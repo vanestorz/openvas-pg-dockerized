@@ -76,7 +76,7 @@ RUN echo "Install Greenbone Web Interface" && \
     apt-get install nodejs yarn && \
     mkdir build && cd build && \
     cmake .. && \
-    make && make doc && make install && make rebuild_cache
+    make install
 
 RUN echo "Install GVMD" && \
     cd /openvas-temp/gvmd-master && \
