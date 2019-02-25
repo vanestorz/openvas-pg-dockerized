@@ -15,7 +15,7 @@ RUN apt-get install build-essential rsync cmake wget curl nmap apt-utils \
                     python-software-properties \
                     xmltoman doxygen xsltproc libmicrohttpd-dev \
                     wapiti nsis rpm alien dnsutils libical-dev \
-                    net-tools openssh-client sendmail vim nano \
+                    net-tools openssh-client sendmail vim nano apt-transport-https \
                     texlive-latex-extra texlive-latex-base texlive-latex-recommended \
                     htmldoc python2.7 python-setuptools python-pip sqlfairy python-polib \
                     perl-base heimdal-dev heimdal-multidev autoconf sqlite3 libsqlite3-dev redis-server \
@@ -68,8 +68,12 @@ RUN echo "Install OSPD" && \
 
 RUN echo "Install Greenbone Web Interface" && \
     cd /openvas-temp/gsa-master && \
-    curl -sL https://deb.nodesource.com/setup_11.x | bash - && \
-    apt-get install -y nodejs && \
+    curl --silent --show-error https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
+    curl --silent --show-error https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add - && \
+    echo "deb https://deb.nodesource.com/node_8.x stretch main" | tee /etc/apt/sources.list.d/nodesource.list && \
+    apt-get update && \
+    apt-get install nodejs yarn && \
     mkdir build && cd build && \
     cmake .. && \
     make && make doc && make install && make rebuild_cache
