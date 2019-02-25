@@ -57,9 +57,9 @@ RUN echo "Install OpenVAS Scanner" && \
 RUN echo "Upgrading pip modules" && \
     pip install --upgrade pip
 
-RUN echo "Install GVM-Tools" && \
-    cd /openvas-temp/gvm-tools-master && \
-    pip install gvm-tools
+#RUN echo "Install GVM-Tools" && \
+#    cd /openvas-temp/gvm-tools-master && \
+#    pip install gvm-tools
 
 RUN echo "Install OSPD" && \
     cd /openvas-temp/ospd-master && \
