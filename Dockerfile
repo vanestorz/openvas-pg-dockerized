@@ -7,7 +7,7 @@ RUN apt-get update && \
 
 RUN apt-get install build-essential rsync cmake wget curl nmap apt-utils \
                     python-software-properties software-properties-common \
-                    pkg-config python-dev \
+                    pkg-config python-dev git \
                     libssh-dev libgnutls28-dev libglib2.0-dev libpcap-dev \
                     libgpgme11-dev uuid-dev bison libksba-dev libsnmp-dev \
                     libgcrypt20-dev libldap2-dev libxml2-dev libxslt1-dev \
@@ -49,7 +49,7 @@ RUN echo "Install GVM Libraries" && \
     make && make doc && make install && make rebuild_cache
 
 RUN echo "Install OpenVAS Scanner" && \
-    cd /openvas-temp/openvas-libraries-master && \
+    cd /openvas-temp/openvas-scanner-master && \
     mkdir build && cd build && \
     cmake .. && \
     make && make doc && make install && make rebuild_cache
