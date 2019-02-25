@@ -40,7 +40,7 @@ RUN echo "[OpenVAS] Install OpenVAS..." && \
     wget -nv https://github.com/greenbone/gvm-tools/archive/master.zip && \
     wget -nv https://github.com/greenbone/ospd/archive/master.zip && \
     echo "Unzip all OpenVAS files" && \
-    cat *.zip | unzip -
+    cat *.zip | unzip master
 
 RUN echo "Install GVM Libraries" && \
     cd /openvas-temp/gvm-libs-master && \
