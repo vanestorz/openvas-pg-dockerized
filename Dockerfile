@@ -54,13 +54,16 @@ RUN echo "Install OpenVAS Scanner" && \
     cmake .. && \
     make && make doc && make install && make rebuild_cache
 
+RUN echo "Upgrading pip modules" && \
+    pip install --upgrade pip && 
+    
 RUN echo "Install GVM-Tools" && \
     cd /openvas-temp/gvm-tools-master && \
     pip install .
 
 RUN echo "Install OSPD" && \
     cd /openvas-temp/ospd-master && \
-    pip install --upgrade pip && pip install .
+    pip install .
 
 
 RUN echo "Install Greenbone Web Interface" && \
