@@ -21,7 +21,7 @@ RUN apt-get install build-essential rsync cmake wget curl nmap apt-utils \
                     perl-base heimdal-dev heimdal-multidev autoconf sqlite3 libsqlite3-dev redis-server \
                     libhiredis-dev libpopt-dev libxslt-dev gnupg \
                     postgresql-9.5 libpq-dev postgresql-server-dev-all postgresql-client-9.5 postgresql-contrib-9.5 unzip \
-                    -yq --force-yes
+                    -yq --allow
 
 RUN echo "Create auxiliary files and directories" && \
     mkdir -p /var/run/redis && \
@@ -29,7 +29,7 @@ RUN echo "Create auxiliary files and directories" && \
     mkdir -p /openvas
 ADD scripts/install.sh /openvas/
 ADD scripts/start.sh /openvas/
-ADD configuration/redis.conf /etc/redis/redis.conf
+ADD configuration/redis.config /etc/redis/redis.config
 
 RUN echo "[OpenVAS] Install OpenVAS..." && \
     cd /openvas-temp && \
