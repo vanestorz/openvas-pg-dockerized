@@ -33,12 +33,12 @@ ADD configuration/redis.config /etc/redis/redis.config
 
 RUN echo "[OpenVAS] Install OpenVAS..." && \
     cd /openvas-temp && \
-    wget -nv https://github.com/greenbone/gvm-libs/archive/master.zip \
-    wget -nv https://github.com/greenbone/openvas-scanner/archive/master.zip \
-    wget -nv https://github.com/greenbone/gvmd/archive/master.zip \
-    wget -nv https://github.com/greenbone/gsa/archive/master.zip \
-    wget -nv https://github.com/greenbone/gvm-tools/archive/master.zip \
-    wget -nv https://github.com/greenbone/ospd/archive/master.zip \
+    wget https://github.com/greenbone/gvm-libs/archive/master.zip \
+    wget https://github.com/greenbone/openvas-scanner/archive/master.zip \
+    wget https://github.com/greenbone/gvmd/archive/master.zip \
+    wget https://github.com/greenbone/gsa/archive/master.zip \
+    wget https://github.com/greenbone/gvm-tools/archive/master.zip \
+    wget https://github.com/greenbone/ospd/archive/master.zip \
     echo "Unzip all OpenVAS files" && \
     cat *.zip | unzip -
 
