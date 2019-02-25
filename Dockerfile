@@ -7,7 +7,7 @@ RUN apt-get update && \
 
 RUN apt-get install build-essential rsync cmake wget curl nmap apt-utils \
                     python-software-properties software-properties-common \
-                    pkg-config python-dev git \
+                    pkg-config python-dev git git-all \
                     libssh-dev libgnutls28-dev libglib2.0-dev libpcap-dev \
                     libgpgme11-dev uuid-dev bison libksba-dev libsnmp-dev \
                     libgcrypt20-dev libldap2-dev libxml2-dev libxslt1-dev \
