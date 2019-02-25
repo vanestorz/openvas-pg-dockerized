@@ -59,7 +59,7 @@ RUN echo "Upgrading pip modules" && \
 
 RUN echo "Install GVM-Tools" && \
     cd /openvas-temp/gvm-tools-master && \
-    pip install .
+    pip install gvm-tools
 
 RUN echo "Install OSPD" && \
     cd /openvas-temp/ospd-master && \
