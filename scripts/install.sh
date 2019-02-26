@@ -15,11 +15,11 @@ su - postgres -c "psql tasks -c 'create role dba with superuser noinherit; grant
 sleep 5
 
 redis-server /etc/redis/redis.conf
-# while [ "${X}" != "PONG"]; do
-#         echo "[REDIS] Redis-server not ready"
-#         sleep 1
-#         x="${redis-cli ping)"
-# done
+while [ "${X}" != "PONG" ]; do
+        echo "[REDIS] Redis-server not ready"
+        sleep 1
+        X="${redis-cli ping)"
+done
 echo "[REDIS] Redis-server ready."
 
 # Menambahkan sertifikat openvas
