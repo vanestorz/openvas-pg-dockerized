@@ -13,12 +13,6 @@ done
 
 redis-server /etc/redis/redis.conf
 sleep 1
-while [ "${X}" != "PONG"]; do
-        echo "[REDIS] Redis-server not ready..."
-        sleep 1
-        X="$(redis-clie ping)"
-done
-echo "[REDIS] Redis-server ready..."
 
 cd /usr/local/sbin
 
