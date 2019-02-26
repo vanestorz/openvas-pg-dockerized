@@ -48,5 +48,5 @@ sleep 5
 openvasmd --create-user=administrator --role="Super Admin"
 openvasmd --user=administrator --new-password=s3g3r4d1g4nt1
 
-echo "Kill openvassd"
+# echo "Kill openvassd"
 # ps aux | grep openvassd | awk '{print $2}' | xargs kill -9
