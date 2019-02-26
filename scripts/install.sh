@@ -1,4 +1,5 @@
 #!/bin/bash
+
 echo "Starting setup..."
 ldconfig
 
@@ -6,7 +7,7 @@ sed -i 's|^#checkpoint_timeout = 5min|checkpoint_timeout = 1h|;s|^#checkpoint_wa
 
 { echo; echo "host all all 127.0.0.1/32 trust"; } >> "/etc/postgresql/9.5/main/pg_hba.conf"
 
-service postgresql start 
+service postgresql start
 
 su - postgres -c "createuser -DRS root"
 su - postgres -c "createdb -O root tasks"
@@ -48,5 +49,5 @@ sleep 5
 openvasmd --create-user=administrator --role="Super Admin"
 openvasmd --user=administrator --new-password=s3g3r4d1g4nt1
 
-# echo "Kill openvassd"
-# ps aux | grep openvassd | awk '{print $2}' | xargs kill -9
+echo "Kill openvassd"
+ps aux | grep openvassd | awk '{print $2}' | xargs kill -9
