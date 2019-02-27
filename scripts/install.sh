@@ -35,7 +35,7 @@ echo "Cert Sync..." && greenbone-certdata-sync
 sleep 5
 echo "Rebuilding Openvasmd..."
 
-sleep5
+sleep 5
 openvasmd --rebuild --progress --verbose
 
 echo "Creating Admin user..."
