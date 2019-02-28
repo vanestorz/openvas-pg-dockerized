@@ -29,7 +29,7 @@ RUN echo "Create auxiliary files and directories" && \
     mkdir -p /openvas
 ADD scripts/install.sh /openvas/
 ADD scripts/start.sh /openvas/
-ADD configuration/redis.conf /etc/redis/redis.conf
+ADD configuration/redis.conf /etc/redis/redis-custom.conf
 
 RUN echo "[OpenVAS] Install OpenVAS..." && \
     cd /openvas-temp && \

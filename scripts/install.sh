@@ -14,7 +14,7 @@ su - postgres -c "createdb -O root tasks"
 su - postgres -c "psql tasks -c 'create role dba with superuser noinherit; grant dba to root; create extension \"uuid-ossp\";'"
 sleep 5
 
-redis-server /etc/redis/redis.conf
+redis-server /etc/redis/redis-custom.conf
 
 # Menambahkan sertifikat openvas
 echo "Add openvas certificates..." && openvas-manage-certs -a -f -q
