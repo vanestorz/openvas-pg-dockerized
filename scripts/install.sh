@@ -21,6 +21,9 @@ echo "Add openvas certificates..." && greenbone-manage-certs -a -f -q
 
 cd /usr/local/sbin
 
+sleep 5
+echo "Start scanner..." && openvassd
+
 echo "Migrate SQLite db to PostgreSQL"
 openvas-migrate-to-postgres
 
@@ -30,15 +33,13 @@ openvasmd --rebuild --progress --verbose
 
 echo "Sync NVTs, CVEs, CPEs..."
 
-echo "NVT Sync..." && greenbone-nvt-sync
-sleep 5
-echo "Start scanner..." && openvassd
+echo "NVT Sync..." && greenbone-nvt-sync --verbose
 
 sleep 5
-echo "Scapdata Sync..." && greenbone-scapdata-sync
+echo "Scapdata Sync..." && greenbone-scapdata-sync --verbose
 
 sleep 5
-echo "Cert Sync..." && greenbone-certdata-sync
+echo "Cert Sync..." && greenbone-certdata-sync --verbose
 
 echo "Creating Admin user..."
 sleep 5
