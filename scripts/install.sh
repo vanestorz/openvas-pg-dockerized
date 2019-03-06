@@ -38,8 +38,8 @@ echo "NVT Sync..." && greenbone-nvt-sync --verbose
 sleep 5
 echo "Scapdata Sync..." && greenbone-scapdata-sync --verbose
 
-sleep 5
-echo "Cert Sync..." && greenbone-certdata-sync --verbose
+#sleep 5
+#echo "Cert Sync..." && greenbone-certdata-sync --verbose
 
 echo "Creating Admin user..."
 sleep 5
