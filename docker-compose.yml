@@ -10,7 +10,7 @@ services:
       - '4000:4000'
       - '7432:7432'
     volumes:
-      - './openvas_pg'
+      - '.:./openvas_pg'
     env_file:
       - '.env'
     tty: true
