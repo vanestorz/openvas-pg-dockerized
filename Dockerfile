@@ -78,10 +78,6 @@ RUN apt-get autoremove -yq && \
     rm -rf /var/lib/apt/lists/*
 RUN rm -rf /openvas-temp
 
-## Setup Openvas
-RUN ldconfig
-RUN chmod 700 /openvas/*.sh && \
-	bash /openvas/setup.sh
 
 RUN ldconfig
 RUN chmod 700 /openvas/*.sh && \
