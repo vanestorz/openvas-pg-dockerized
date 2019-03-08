@@ -17,7 +17,7 @@ sleep 5
 redis-server /etc/redis/redis-custom.conf
 
 # Menambahkan sertifikat openvas
-echo "Add openvas certificates..." && greenbone-manage-certs -a -f -q
+echo "Add openvas certificates..." && openvas-manage-certs -a -f -q
 
 cd /usr/local/sbin
 
