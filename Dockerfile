@@ -54,6 +54,7 @@ RUN echo "Install OpenVAS Scanner" && \
     cmake .. && \
     make && make doc && make install && make rebuild_cache
 
+## Use PostgreSQL
 RUN echo "Install OpenVAS Manager" && \
     cd /openvas-temp/openvas-manager-* && \
     mkdir build && cd build && \
@@ -72,16 +73,24 @@ RUN echo "Install Greenbone Web Interface" && \
     cmake .. && \
     make && make doc && make install && make rebuild_cache
 
+# Clear directories and files
 RUN apt-get autoremove -yq && \
     rm -rf /var/lib/apt/lists/*
 RUN rm -rf /openvas-temp
 
+## Setup Openvas
 RUN ldconfig
 RUN chmod 700 /openvas/*.sh && \
-    bash /openvas/install.sh
+	bash /openvas/setup.sh
 
-RUN sed -i 's|^# unixsocket perm 755|unixsocketperm 755|;s|^# unixsocket /var/run/redis/redis.sock|unixsocket /tmp/redis.sock|;s|^port 6379|#port 6379|' /etc/redis/redis.conf
+RUN ldconfig
+RUN chmod 700 /openvas/*.sh && \
+	bash /openvas/install.sh
 
+# Setup redis config
+RUN sed -i 's|^# unixsocketperm 755|unixsocketperm 755|;s|^# unixsocket /var/run/redis/redis.sock|unixsocket /tmp/redis.sock|;s|^port 6379|#port 6379|' /etc/redis/redis.conf
+
+# Download openvas-check-setup
 RUN wget https://svn.wald.intevation.org/svn/openvas/trunk/tools/openvas-check-setup --no-check-certificate -O /openvas/openvas-check-setup && \
     chmod a+x /openvas/openvas-check-setup
 
