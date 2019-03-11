@@ -1,0 +1,26 @@
+32c32
+< BuildRequires:	sqlite-devel
+---
+> BuildRequires:	postgresql-devel
+55a56,57
+> Requires:	postgresql-server
+> Requires:	postgresql-contrib
+65c67
+< a SQL database (sqlite-based) where all configuration and scan result data is 
+---
+> a SQL database where all configuration and scan result data is 
+86c88,89
+< %cmake -DLOCALSTATEDIR:PATH=%{_var}
+---
+> sed -i 's|postgresql/||' src/sql_pg.c
+> %cmake -DLOCALSTATEDIR:PATH=%{_var} -DBACKEND=POSTGRESQL
+183c186
+< %{_sbindir}/database-statistics-sqlite
+---
+> #%{_sbindir}/database-statistics-sqlite
+185c188
+< %{_sbindir}/openvasmd-sqlite
+---
+> %{_sbindir}/openvasmd-pg
+201a205
+> %{_prefix}/lib/openvasmd/pg/libmanage-pg-server.so*

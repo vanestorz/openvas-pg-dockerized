@@ -1,0 +1,8 @@
+#!/bin/bash
+
+greenbone-nvt-sync
+greenbone-scapdata-sync
+greenbone-certdata-sync
+
+openvasmd --update --progress
+openvasmd --rebuild --progress
