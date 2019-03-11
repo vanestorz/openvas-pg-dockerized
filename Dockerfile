@@ -22,7 +22,7 @@ RUN dnf -y reinstall $HOME/rpmbuild/RPMS/x86_64/openvas-manager-*.x86_64.rpm
 RUN echo "/usr/lib/openvasmd/pg" > /etc/ld.so.conf.d/openvas-manager.conf
 RUN ldconfig
 
-# Add Tini
+# Add Tini for best performance management
 ENV TINI_VERSION v0.18.0
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini.asc /tini.asc
