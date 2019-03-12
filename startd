@@ -16,18 +16,14 @@ runuser - postgres -c 'pg_ctl start'
 
 PASSWORD=${PASSWORD:-"admin"}
 
+GSAD_LISTEN="--listen=127.0.0.1"
+GSAD_HTTP_ONLY="--http-only"
+GSAD_PORT="--port=9392"
 GSAD_MLISTEN="--mlisten=127.0.0.1"
 GSAD_MPORT="--mport=9390"
-GSAD_KEY="--ssl-private-key=/etc/pki/openvas/private/CA/serverkey.pem"
-GSAD_CERT="--ssl-certificate=/etc/pki/openvas/CA/servercert.pem"
-TLS_PRIORITIES="--gnutls-priorities=SECURE128:-AES-128-CBC:-CAMELLIA-128-CBC:-VERS-SSL3.0:-VERS-TLS1.0"
 
 OPENVASMD_LISTEN="--listen=127.0.0.1"
 OPENVASMD_PORT="--port=9390"
-
-if [ ! -z "$SMTP_SERVER" ] && [ -z "$(cat /etc/ssmtp/ssmtp.conf | grep $SMTP_SERVER)" ]; then
-	sed -i "s/^mailhub.*/mailhub=$SMTP_SERVER/g" /etc/ssmtp/ssmtp.conf
-fi
 
 export OPENVAS_KEY_LOCATION="/etc/pki/openvas/private/CA"
 export OPENVAS_CERT_LOCATION="/etc/pki/openvas/CA"
@@ -47,15 +43,13 @@ if ! openvasmd --get-users | grep -q ^admin$; then
 fi
 
 if ! >&/dev/null openvas-manage-certs -V; then
-        echo "Creating certificates..."
-	echo
 	openvas-manage-certs -a
 fi
 
 /usr/bin/redis-server /etc/redis.conf
 /usr/sbin/openvasmd $OPENVASMD_LISTEN $OPENVASMD_PORT
 /usr/sbin/openvassd
-/usr/sbin/gsad $GSAD_LISTEN $GSAD_HTTP_ONLY $GSAD_PORT $GSAD_MLISTEN $GSAD_MPORT $GSAD_KEY $GSAD_CERT $TLS_PRIORITIES
+/usr/sbin/gsad $GSAD_LISTEN $GSAD_HTTP_ONLY $GSAD_PORT $GSAD_MLISTEN $GSAD_MPORT
 
 tail -F --silent /var/log/openvas/* &
 tail_pid=$!
