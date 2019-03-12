@@ -21,5 +21,6 @@ RUN rpmbuild -bb $HOME/rpmbuild/SPECS/openvas-manager.spec
 RUN dnf -y reinstall $HOME/rpmbuild/RPMS/x86_64/openvas-manager-*.x86_64.rpm
 RUN echo "/usr/lib/openvasmd/pg" > /etc/ld.so.conf.d/openvas-manager.conf
 RUN ldconfig
+RUN chmod +x /usr/sbin/startd && chmod +x /usr/sbin/update
 
 CMD ["/usr/sbin/startd"]
