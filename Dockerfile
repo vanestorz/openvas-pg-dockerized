@@ -23,4 +23,6 @@ RUN echo "/usr/lib/openvasmd/pg" > /etc/ld.so.conf.d/openvas-manager.conf
 RUN ldconfig
 RUN chmod +x /usr/sbin/startd && chmod +x /usr/sbin/update
 
+EXPOSE 9390
+
 CMD ["/usr/sbin/startd"]
